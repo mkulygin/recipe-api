@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "60b3482e-48cd-2ad2-0edc-172cf02dd22a",
+		"name": "Recipes Api",
+		"description": "# Introduction\nThis Recipes Api is the simple example of Restfull Api. It offers CRUD operations with recepies, plus search by name and rate from 1 to 5 stars.\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nAPI uses Beared authentification with JWT tokens in header. To authentificate you must proivde valid login and password to /auth endpoint.\n\n# Error Codes\nStandart codes for restfull api.\n\n# Rate limit\nRate limit is 40 requests per second.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "59aca8c2-e76e-4c36-86ab-08efe97d3fbf",
+			"name": "List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6deca4d7-767f-4d40-990a-5f56628fb881",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Link is present\", function () {",
+							"    pm.response.to.have.header(\"Link\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/recipes?page=1&per_page=10",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"recipes"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "per_page",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "70573f01-1250-4d74-b994-41f24e653729",
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e86fdc5c-5692-42aa-bcf1-5c31a9fdb8b8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.IntcInVzZXJJZFwiOlwiYjA4Zjg2YWYtMzVkYS00OGYyLThmYWItY2VmMzkwNDY2MGJkXCIsXCJleHBcIjoxNTMzNjQxMjc0LFwiaWF0XCI6MTUzMzYzOTQ3NH0i.EXJmL14wWqnneEF92NkLoteqVgaXQozuQCCUPED_hNiLCgSIA5zhYpdUoAAtzP5MP564CW5MpzxWcmLzJJzjZQ"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Sausage with apples",
+							"sessionValue": "Chiken Curry",
+							"type": "text"
+						},
+						{
+							"key": "preptime",
+							"value": "15 minutes",
+							"sessionValue": "15 minutes",
+							"type": "text"
+						},
+						{
+							"key": "difficulty",
+							"value": "4",
+							"sessionValue": "4",
+							"type": "text"
+						},
+						{
+							"key": "vegeterian",
+							"value": "true",
+							"sessionValue": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/recipes/",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"recipes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "924fa7cc-4c64-4990-b20a-628319b8f647",
+			"name": "Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8179e63f-1af8-410c-b75d-9558cb720bf2",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/recipes/5b6948a17af19c32f62da887",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"recipes",
+						"5b6948a17af19c32f62da887"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "5189d506-b092-4f5d-b7a6-5e5daadfa1de",
+			"name": "Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a52fc57-eb2c-4077-9719-b298d8cc4fab",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.IntcInVzZXJJZFwiOlwiYjA4Zjg2YWYtMzVkYS00OGYyLThmYWItY2VmMzkwNDY2MGJkXCIsXCJleHBcIjoxNTMzNjU3NjQyLFwiaWF0XCI6MTUzMzY1NTg0Mn0i.ySeGoqKg8ZVnLpwb0_HeE3C_6C0zzrB_ANF4YTGe_dXuB66tQxJ2wVrDsw7CSGrWEM9C5xAqZusjsconEEwNIw"
+					},
+					{
+						"key": "name",
+						"value": "123312321",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "White rice 3",
+							"sessionValue": "081323",
+							"type": "text"
+						},
+						{
+							"key": "preptime",
+							"value": "30 minutes",
+							"sessionValue": "30 minutes",
+							"type": "text"
+						},
+						{
+							"key": "difficulty",
+							"value": "1",
+							"sessionValue": "1",
+							"type": "text"
+						},
+						{
+							"key": "vegeterian",
+							"value": "1",
+							"sessionValue": "true",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "5b69b4ae7af19c32f50c564a",
+							"sessionValue": "5b6889c17af19c32f50c5645",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/recipes/5b6889c17af19c32f50c5645",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"recipes",
+						"5b6889c17af19c32f50c5645"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "00a7c328-4646-4b78-8113-26d725ca59fc",
+			"name": "Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f052ca31-a96c-4913-aa5b-fd35d7b44ecb",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.IntcInVzZXJJZFwiOlwiYjA4Zjg2YWYtMzVkYS00OGYyLThmYWItY2VmMzkwNDY2MGJkXCIsXCJleHBcIjoxNTMzNjU3NjQyLFwiaWF0XCI6MTUzMzY1NTg0Mn0i.ySeGoqKg8ZVnLpwb0_HeE3C_6C0zzrB_ANF4YTGe_dXuB66tQxJ2wVrDsw7CSGrWEM9C5xAqZusjsconEEwNIw"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5b69b4c37af19c32f62da88b",
+							"sessionValue": "5b69b4ae7af19c32f50c564a",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Rabbit in wine",
+							"sessionValue": "Rabbit in wine",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/recipes/5b69b4ae7af19c32f50c564a",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"recipes",
+						"5b69b4ae7af19c32f50c564a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "f135d412-15ec-416e-b7c5-7651f64d3c54",
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.IntcInVzZXJJZFwiOlwiYjA4Zjg2YWYtMzVkYS00OGYyLThmYWItY2VmMzkwNDY2MGJkXCIsXCJleHBcIjoxNTMzNjQxNzIyLFwiaWF0XCI6MTUzMzYzOTkyMn0i.qwxEwgDEJ3g2QfXmAi91KgKfrono4rReIfi5rnqKnY2AKMJqiFm9iN16jvwTDgeYyWJqeP1A516mPzXdruglqQ"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost/recipes/5b697b457af19c32f62da888",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"recipes",
+						"5b697b457af19c32f62da888"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "38c34d24-381f-4d9d-af68-fcd90a22c732",
+			"name": "Rate",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "rate",
+							"value": "5",
+							"sessionValue": "5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/recipes/5b69487f7af19c32f62da886/rating/",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"recipes",
+						"5b69487f7af19c32f62da886",
+						"rating",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "7e365ced-b952-4e39-980f-ec260c6a581c",
+			"name": "Search",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost/recipes/search/?preptime=120 minutes&vegeterian=1&difficulty=1&name=Borsch",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"recipes",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "preptime",
+							"value": "120 minutes"
+						},
+						{
+							"key": "vegeterian",
+							"value": "1"
+						},
+						{
+							"key": "difficulty",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "Borsch"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "5b14fdf4-98b1-4f12-b9d1-8087d079bc71",
+			"name": "Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08ce46fc-8fca-4b78-b39d-58160314eff3",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Bearer\", function () {",
+							"    pm.response.to.have.header(\"Authorization\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "mkulygin",
+							"sessionValue": "mkulygin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "tevakeku",
+							"sessionValue": "tevakeku",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/auth",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "92d99b6a-aaaa-4649-9ef2-685e3fbf0949",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eef2db32-3542-473a-976f-88c1231a0d07",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

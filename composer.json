@@ -1,0 +1,10 @@
+{
+    "require": {
+        "firebase/php-jwt": "^5.0",
+        "doctrine/dbal": "^2.8",
+        "mongodb/mongodb": "^1.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6"
+    }
+}
